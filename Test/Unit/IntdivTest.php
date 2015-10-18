@@ -18,6 +18,11 @@ class IntdivTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(3, intdiv(7, 2));
     }
 
+    public function testFloatInput()
+    {
+        $this->assertEquals(2, intdiv(6.5, 3));
+    }
+
     /**
      * @expectedException DivisionByZeroError
      */

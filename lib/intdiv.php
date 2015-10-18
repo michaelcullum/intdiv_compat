@@ -19,10 +19,8 @@ namespace {
                 throw new ArithmeticError('You are trying to divide a number that is too small');
             }
 
-            if (!is_int($dividend) || !is_int($divisor))
-            {
-                throw new TypeError('Both the dividend and divisor must be integers');
-            }
+            $dividend = intval($dividend);
+            $divisor = intval($divisor);
 
             $dividend = ($dividend - $dividend % $divisor);
 
