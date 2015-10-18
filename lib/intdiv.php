@@ -32,7 +32,7 @@ namespace {
         }
     }
 
-    if ((!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError') || !class_exists('TypeError')) 
+    if ((!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) 
         && (!class_exists('Error') || (!in_array('Throwable', class_implements('Error')) && !in_array('Throwable', class_implements('Exception'))))) {
         class Error extends \Exception
         {
@@ -55,16 +55,6 @@ namespace {
 
     if (!class_exists('DivisionByZeroError')) {
         class DivisionByZeroError extends Error
-        {
-            public function __toString()
-            {
-                return $this->getMessage();
-            }
-        }
-    }
-
-    if (!class_exists('TypeError')) {
-        class TypeError extends Error
         {
             public function __toString()
             {

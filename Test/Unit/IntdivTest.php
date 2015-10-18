@@ -19,22 +19,6 @@ class IntdivTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException TypeError
-     */
-    public function testFloatDividend()
-    {
-        intdiv(6.5, 3);
-    }
-
-    /**
-     * @expectedException TypeError
-     */
-    public function testFloatDivisor()
-    {
-        intdiv(6, 3.5);
-    }
-
-    /**
      * @expectedException DivisionByZeroError
      */
     public function testDivisionByZero()
