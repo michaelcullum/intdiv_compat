@@ -14,11 +14,11 @@ namespace {
         function intdiv($dividend, $divisor)
         {
             if ($divisor == 0) {
-                throw new Exception("Divisor in intdiv() cannot be zero");
+                throw new DivisionByZeroError("Divisor in intdiv() cannot be zero");
             }
 
             if ($divisor == -1 && $dividend == PHP_INT_MIN) {
-                throw new Exception('You are trying to divide a number that is too small');
+                throw new ArithmeticError('You are trying to divide a number that is too small');
             }
 
             $dividend = ($dividend - $dividend % $divisor);
@@ -27,7 +27,8 @@ namespace {
         }
     }
 
-    if (!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) {
+    if ((!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) 
+        && (!class_exists('Error') || (!in_array('Throwable', class_implements('Error')) && !in_array('Throwable', class_implements('Exception'))))) {
         class Error extends \Exception
         {
             public function __toString()
