@@ -9,16 +9,17 @@ Requires PHP 5.3.0 or later due to exceptions
 
 Either `require` the `src/intdiv.php` file or install using [Composer](https://getcomposer.org/)
 
-  composer require michaelc/intdiv-compat
+  `composer require michaelc/intdiv-compat`
   
 ## Usage
 
-  int intdiv ( int $dividend , int $divisor )
+  `int intdiv ( int $dividend , int $divisor )`
 
 Returns the integer quotient of the division of dividend by divisor
 
-If divisor is 0, a DivisionByZeroError exception is thrown. If the dividend is PHP_INT_MIN and
-the divisor is -1, then an ArithmeticError exception is thrown.
+If divisor is 0, a DivisionByZeroError exception is thrown. If the dividend is ~PHP_INT_MAX
+(PHP_INT_MIN was introduced in PHP 7) and the divisor is -1, then an ArithmeticError exception
+is thrown.
 
 See http://php.net/manual/en/function.intdiv.php for more information
 
@@ -33,5 +34,7 @@ This library can be safely included on a system running PHP 7 and it will not af
 ## Tests
 
 To run tests:
+```
   composer install
   vendor/bin/phpunit
+```
