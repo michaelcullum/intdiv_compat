@@ -1,25 +1,25 @@
 {
-	"name": "michaelc/intdiv-compat",
-	"description": "A compatibility library for the simplified intdiv function in PHP 7: https://wiki.php.net/rfc/intdiv",
-	"keywords": ["division"],
+    "name": "michaelc/intdiv-compat",
+    "description": "A compatibility library for the simplified intdiv function in PHP 7: https://wiki.php.net/rfc/intdiv",
+    "keywords": ["division"],
     "type": "library",
-	"homepage": "https://github.com/michaelcullum/intdiv_compat",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Michael Cullum",
-			"email": "m@michaelcullum.com",
-			"role": "Userland compatibility library"
-		},
-		{
-			"name": "Andrea Faulds",
-			"role": "PHP Implementation"
-		}
-	],
-	"require-dev": {
-		"phpunit/phpunit": "4.*"
-	},
-	"autoload": {
-		"files": ["lib/intdiv.php"]
-	}
+    "homepage": "https://github.com/michaelcullum/intdiv_compat",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Cullum",
+            "email": "m@michaelcullum.com",
+            "role": "Userland compatibility library"
+        },
+        {
+            "name": "Andrea Faulds",
+            "role": "PHP Implementation"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "files": ["lib/intdiv.php"]
+    }
 }

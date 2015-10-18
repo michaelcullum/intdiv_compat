@@ -9,51 +9,51 @@
 
 namespace {
 
-	if (!function_exists('intdiv')) {
+    if (!function_exists('intdiv')) {
 
-		function intdiv($dividend, $divisor)
-		{
-			if ($divisor == 0) {
-				throw new Exception("Divisor in intdiv() cannot be zero");
-			}
+        function intdiv($dividend, $divisor)
+        {
+            if ($divisor == 0) {
+                throw new Exception("Divisor in intdiv() cannot be zero");
+            }
 
-			if ($divisor == -1 && $dividend == PHP_INT_MIN) {
-				throw new Exception('You are trying to divide a number that is too small');
-			}
+            if ($divisor == -1 && $dividend == PHP_INT_MIN) {
+                throw new Exception('You are trying to divide a number that is too small');
+            }
 
-			$dividend = ($dividend - $dividend % $divisor);
+            $dividend = ($dividend - $dividend % $divisor);
 
-			return (intval($dividend / $divisor));
-		}
-	}
+            return (intval($dividend / $divisor));
+        }
+    }
 
-	if (!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) {
-		class Error extends \Exception
-		{
-			public function __toString()
-			{
-				return $this->getMessage();
-			}
-		}
-	}
+    if (!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) {
+        class Error extends \Exception
+        {
+            public function __toString()
+            {
+                return $this->getMessage();
+            }
+        }
+    }
 
-	if (!class_exists('ArithmeticError')) {
-		class ArithmeticError extends Error
-		{
-			public function __toString()
-			{
-				return $this->getMessage();
-			}
-		}
-	}
+    if (!class_exists('ArithmeticError')) {
+        class ArithmeticError extends Error
+        {
+            public function __toString()
+            {
+                return $this->getMessage();
+            }
+        }
+    }
 
-	if (!class_exists('DivisionByZeroError')) {
-		class DivisionByZeroError extends Error
-		{
-			public function __toString()
-			{
-				return $this->getMessage();
-			}
-		}
-	}
+    if (!class_exists('DivisionByZeroError')) {
+        class DivisionByZeroError extends Error
+        {
+            public function __toString()
+            {
+                return $this->getMessage();
+            }
+        }
+    }
 }
