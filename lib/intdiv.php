@@ -17,7 +17,7 @@ namespace {
                 throw new DivisionByZeroError('Divisor in intdiv() cannot be zero');
             }
 
-            if ($divisor == -1 && $dividend == PHP_INT_MIN) {
+            if ($divisor == -1 && $dividend == ~PHP_INT_MAX) {
                 throw new ArithmeticError('You are trying to divide a number that is too small');
             }
 
