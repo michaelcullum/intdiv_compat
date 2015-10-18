@@ -8,9 +8,7 @@
  */
 
 namespace {
-
     if (!function_exists('intdiv')) {
-
         function intdiv($dividend, $divisor)
         {
             if ($divisor == 0) {
