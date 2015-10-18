@@ -28,7 +28,7 @@ namespace {
 	}
 
 	if (!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) {
-		class Error extends Exception
+		class Error extends \Exception
 		{
 			public function __toString()
 			{
