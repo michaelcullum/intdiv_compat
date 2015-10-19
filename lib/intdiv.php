@@ -11,16 +11,16 @@ namespace {
     if (!function_exists('intdiv')) {
         function intdiv($dividend, $divisor)
         {
-            if ($divisor == 0) {
-                throw new DivisionByZeroError('Divisor in intdiv() cannot be zero');
-            }
-
-            if ($divisor == -1 && $dividend == ~PHP_INT_MAX) {
-                throw new ArithmeticError('You are trying to divide a number that is too small');
-            }
-
             $dividend = (int) $dividend;
             $divisor = (int) $divisor;
+
+            if ($divisor === 0) {
+                throw new DivisionByZeroError('Division by zero');
+            }
+
+            if ($divisor === -1 && $dividend == ~PHP_INT_MAX) {
+                throw new ArithmeticError('Division of PHP_INT_MIN by -1 is not an integer');
+            }
 
             $dividend = ($dividend - $dividend % $divisor);
 
