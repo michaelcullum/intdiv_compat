@@ -1,7 +1,9 @@
 # intdiv_compat
 ![Travis CI](https://api.travis-ci.org/michaelcullum/intdiv_compat.svg)
 
-This library/polyfill provides the intdiv function that was added in PHP 7: https://wiki.php.net/rfc/intdiv
+This library/polyfill provides the intdiv function that was added in PHP 7 in PHP 5.3 and later.
+
+For more information see the [RFC](https://wiki.php.net/rfc/intdiv).
 
 ## Requirements
 
