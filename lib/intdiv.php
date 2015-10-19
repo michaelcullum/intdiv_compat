@@ -19,12 +19,12 @@ namespace {
                 throw new ArithmeticError('You are trying to divide a number that is too small');
             }
 
-            $dividend = intval($dividend);
-            $divisor = intval($divisor);
+            $dividend = (int) $dividend;
+            $divisor = (int) $divisor;
 
             $dividend = ($dividend - $dividend % $divisor);
 
-            return (intval($dividend / $divisor));
+            return ((int) ($dividend / $divisor));
         }
     }
 
