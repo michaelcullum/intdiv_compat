@@ -71,7 +71,7 @@ namespace {
     }
 
     foreach (array('Error', 'ArithmeticError', 'DivisionByZeroError') as $class) {
-        if (!count(array_intersect(array('Exception', 'Throwable'), class_implements($class))) {
+        if (!count(array_intersect(array('Exception', 'Throwable'), class_implements($class)))) {
             throw new \RuntimeException('A class named \''.$class.'\' is already defined that cannot be thrown.');
         }
     }
