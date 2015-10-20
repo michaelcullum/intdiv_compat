@@ -14,7 +14,7 @@ class IntdivTest extends PHPUnit_Framework_TestCase
         var_dump(intdiv(3, -2));
         var_dump(intdiv(-3, -2));
         var_dump(intdiv(PHP_INT_MAX, PHP_INT_MAX));
-        var_dump(intdiv(PHP_INT_MIN, PHP_INT_MIN));
+        var_dump(intdiv(~PHP_INT_MAX, ~PHP_INT_MAX));
         try {
             var_dump(intdiv(PHP_INT_MIN, -1));
         } catch (Throwable $e) {
