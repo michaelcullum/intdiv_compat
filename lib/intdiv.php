@@ -18,7 +18,7 @@ namespace {
             $dividend = (int) $dividend;
             $divisor = (int) $divisor;
 
-            if ($divisor === 0) {
+            if ($divisor == 0) {
                 throw new DivisionByZeroError('Division by zero');
             }
 
