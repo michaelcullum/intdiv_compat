@@ -3,7 +3,7 @@
 class IntdivTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Check: ext/standard/tests/math/intdiv.phpt
+     * @link https://github.com/php/php-src/blob/master/ext/standard/tests/math/intdiv.phpt
      */
     public function testUsingPhpSourceTests()
     {
