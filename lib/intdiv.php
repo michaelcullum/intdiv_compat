@@ -8,6 +8,10 @@
  */
 
 namespace {
+    if (!defined('PHP_INT_MIN')) {
+        define('PHP_INT_MIN', ~PHP_INT_MAX);
+    }
+
     if (!function_exists('intdiv')) {
         function intdiv($dividend, $divisor)
         {
@@ -18,7 +22,7 @@ namespace {
                 throw new DivisionByZeroError('Division by zero');
             }
 
-            if ($divisor === -1 && $dividend == ~PHP_INT_MAX) {
+            if ($divisor === -1 && $dividend === PHP_INT_MIN) {
                 throw new ArithmeticError('Division of PHP_INT_MIN by -1 is not an integer');
             }
 
