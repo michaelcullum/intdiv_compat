@@ -29,18 +29,22 @@ namespace {
     }
 
     if (!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) {
-        if (!class_exists('Throwable')) {
-            class Throwable extends \Exception
+        if (!interface_exists('Throwable')) {
+            interface Throwable
             {
-                public function __toString()
-                {
-                    return $this->getMessage();
-                }
+                abstract public getMessage();
+                abstract public getCode();
+                abstract public getFile();
+                abstract public getLine();
+                abstract public getTrace();
+                abstract public getTraceAsString();
+                abstract public getPrevious();
+                abstract public __toString();
             }
         }
 
         if (!class_exists('Error')) {
-            class Error extends Throwable
+            class Error extends \Exception implements \Throwable
             {
                 public function __toString()
                 {
@@ -50,7 +54,7 @@ namespace {
         }
 
         if (!class_exists('ArithmeticError')) {
-            class ArithmeticError extends Error
+            class ArithmeticError extends \Error
             {
                 public function __toString()
                 {
@@ -60,7 +64,7 @@ namespace {
         }
 
         if (!class_exists('DivisionByZeroError')) {
-            class DivisionByZeroError extends Error
+            class DivisionByZeroError extends \Error
             {
                 public function __toString()
                 {
@@ -71,7 +75,7 @@ namespace {
     }
 
     foreach (array('Error', 'ArithmeticError', 'DivisionByZeroError') as $class) {
-        if (!count(array_intersect(array('Exception', 'Throwable'), class_implements($class)))) {
+        if (!$class instanceof \Exception || !$class instanceof \Throwable) {
             throw new \RuntimeException('A class named \''.$class.'\' is already defined that cannot be thrown.');
         }
     }
