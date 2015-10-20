@@ -30,14 +30,14 @@ namespace {
 
     if (!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) {
         if (!class_exists('Error')) {
-            class Error extends \Exception
+            class Error extends Exception
             {
                 public function __toString()
                 {
                     return $this->getMessage();
                 }
             }
-        } elseif (!Error instanceof \Exception) {
+        } elseif (!Error instanceof Exception) {
             throw new \RuntimeException('A class named \'Error\' is already defined that cannot be thrown.');
         }
 
@@ -49,7 +49,7 @@ namespace {
                     return $this->getMessage();
                 }
             }
-        } elseif (!ArithmeticError instanceof \Exception) {
+        } elseif (!ArithmeticError instanceof Exception) {
             throw new \RuntimeException('A class named \'ArithmeticError\' is already defined that cannot be thrown.');
         }
 
@@ -61,7 +61,7 @@ namespace {
                     return $this->getMessage();
                 }
             }
-        } elseif (!DivisionByZeroError instanceof \Exception) {
+        } elseif (!DivisionByZeroError instanceof Exception) {
             throw new \RuntimeException('A class named \'DivisionByZeroError\' is already defined that cannot be thrown.');
         }
     }
