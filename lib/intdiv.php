@@ -29,18 +29,26 @@ namespace {
     }
 
     if (!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) {
-        if (class_exists('Error')) {
-            if (!count(array_intersect(array('Exception', 'Throwable'), class_implements('Error')))) {
-                throw new \RuntimeException('A class named \'Error\' is already defined that cannot be thrown.');
-            }
-        } else {
-            class Error extends \Exception
+        if (!class_exists('Throwable')) {
+            class Throwable extends \Exception
             {
                 public function __toString()
                 {
                     return $this->getMessage();
                 }
             }
+        }
+
+        if (!class_exists('Error')) {
+            class Error extends Throwable
+            {
+                public function __toString()
+                {
+                    return $this->getMessage();
+                }
+            }
+        } elseif (!count(array_intersect(array('Exception', 'Throwable'), class_implements('Error')))) {
+            throw new \RuntimeException('A class named \'Error\' is already defined that cannot be thrown.');
         }
 
         if (!class_exists('ArithmeticError')) {
@@ -51,6 +59,8 @@ namespace {
                     return $this->getMessage();
                 }
             }
+        } elseif (!count(array_intersect(array('Exception', 'Throwable'), class_implements('ArithmeticError')))) {
+            throw new \RuntimeException('A class named \'ArithmeticError\' is already defined that cannot be thrown.');
         }
     
         if (!class_exists('DivisionByZeroError')) {
@@ -61,6 +71,8 @@ namespace {
                     return $this->getMessage();
                 }
             }
+        } elseif (!count(array_intersect(array('Exception', 'Throwable'), class_implements('DivisionByZeroError')))) {
+            throw new \RuntimeException('A class named \'DivisionByZeroError\' is already defined that cannot be thrown.');
         }
     }
 }
