@@ -47,8 +47,6 @@ namespace {
                     return $this->getMessage();
                 }
             }
-        } elseif (!count(array_intersect(array('Exception', 'Throwable'), class_implements('Error')))) {
-            throw new \RuntimeException('A class named \'Error\' is already defined that cannot be thrown.');
         }
 
         if (!class_exists('ArithmeticError')) {
@@ -59,10 +57,8 @@ namespace {
                     return $this->getMessage();
                 }
             }
-        } elseif (!count(array_intersect(array('Exception', 'Throwable'), class_implements('ArithmeticError')))) {
-            throw new \RuntimeException('A class named \'ArithmeticError\' is already defined that cannot be thrown.');
         }
-    
+
         if (!class_exists('DivisionByZeroError')) {
             class DivisionByZeroError extends Error
             {
@@ -71,8 +67,12 @@ namespace {
                     return $this->getMessage();
                 }
             }
-        } elseif (!count(array_intersect(array('Exception', 'Throwable'), class_implements('DivisionByZeroError')))) {
-            throw new \RuntimeException('A class named \'DivisionByZeroError\' is already defined that cannot be thrown.');
+        }
+    }
+
+    foreach (array('Error', 'ArithmeticError', 'DivisionByZeroError') as $class) {
+        if (!count(array_intersect(array('Exception', 'Throwable'), class_implements($class))) {
+            throw new \RuntimeException('A class named \''.$class.'\' is already defined that cannot be thrown.');
         }
     }
 }
