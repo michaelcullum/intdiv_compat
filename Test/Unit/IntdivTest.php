@@ -17,12 +17,12 @@ class IntdivTest extends PHPUnit_Framework_TestCase
         var_dump(intdiv(~PHP_INT_MAX, ~PHP_INT_MAX));
         try {
             var_dump(intdiv(~PHP_INT_MAX, -1));
-        } catch (Throwable $e) {
+        } catch (\Exception $e) { // Should be Throwable?
             echo "Exception: " . $e->getMessage() . "\n";
         }
         try {
             var_dump(intdiv(1, 0));
-        } catch (Throwable $e) {
+        } catch (\Exception $e) { // Should be Throwable?
             echo "Exception: " . $e->getMessage() . "\n";
         }
 
