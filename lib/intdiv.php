@@ -28,33 +28,38 @@ namespace {
         }
     }
 
-    if ((!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) 
-        && (!class_exists('Error') || (!in_array('Throwable', class_implements('Error')) && !in_array('Throwable', class_implements('Exception'))))) {
-        class Error extends \Exception
-        {
-            public function __toString()
+    if (!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) {
+        if (class_exists('Error')) {
+            if (!count(array_intersect(['Exception', 'Throwable'], class_implements('Error')))) {
+                throw new \RuntimeException('A class named \'Error\' is already defined that cannot be thrown.');
+            }
+        } else {
+            class Error extends \Exception
             {
-                return $this->getMessage();
+                public function __toString()
+                {
+                    return $this->getMessage();
+                }
             }
         }
-    }
 
-    if (!class_exists('ArithmeticError')) {
-        class ArithmeticError extends Error
-        {
-            public function __toString()
+        if (!class_exists('ArithmeticError')) {
+            class ArithmeticError extends Error
             {
-                return $this->getMessage();
+                public function __toString()
+                {
+                    return $this->getMessage();
+                }
             }
         }
-    }
-
-    if (!class_exists('DivisionByZeroError')) {
-        class DivisionByZeroError extends Error
-        {
-            public function __toString()
+    
+        if (!class_exists('DivisionByZeroError')) {
+            class DivisionByZeroError extends Error
             {
-                return $this->getMessage();
+                public function __toString()
+                {
+                    return $this->getMessage();
+                }
             }
         }
     }
