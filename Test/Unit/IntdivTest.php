@@ -9,6 +9,7 @@ class IntdivTest extends PHPUnit_Framework_TestCase
     {
         ob_start();
 
+        // BEGIN TESTS
         var_dump(intdiv(3, 2));
         var_dump(intdiv(-3, 2));
         var_dump(intdiv(3, -2));
@@ -25,20 +26,21 @@ class IntdivTest extends PHPUnit_Framework_TestCase
         } catch (\Exception $e) { // Should be Throwable?
             echo "Exception: " . $e->getMessage() . "\n";
         }
+        // END TESTS
 
         $result = ob_get_contents();
         ob_end_clean();
 
-        $expectedOutput = <<<EOT
-int(1)
-int(-1)
-int(-1)
-int(1)
-int(1)
-int(1)
-Exception: Division of PHP_INT_MIN by -1 is not an integer
-Exception: Division by zero
-EOT;
+        $expectedOutput = implode(PHP_EOL, array(
+            'int(1)',
+            'int(-1)',
+            'int(-1)',
+            'int(1)',
+            'int(1)',
+            'int(1)',
+            'Exception: Division of PHP_INT_MIN by -1 is not an integer',
+            'Exception: Division by zero',
+        )).PHP_EOL;
 
         $this->assertEquals($expectedOutput, $result);
     }
