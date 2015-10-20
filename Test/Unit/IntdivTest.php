@@ -15,15 +15,15 @@ class IntdivTest extends PHPUnit_Framework_TestCase
         var_dump(intdiv(3, -2));
         var_dump(intdiv(-3, -2));
         var_dump(intdiv(PHP_INT_MAX, PHP_INT_MAX));
-        var_dump(intdiv(~PHP_INT_MAX, ~PHP_INT_MAX));
+        var_dump(intdiv(~PHP_INT_MAX, ~PHP_INT_MAX)); // TODO: Change to PHP_INT_MIN (awaiting PR)
         try {
             var_dump(intdiv(~PHP_INT_MAX, -1));
-        } catch (\Error $e) { // TODO: Throwable is caught in original test
+        } catch (\Error $e) { // Note: Throwable is caught in original test, has no meaning outside of PHP 7
             echo "Exception: " . $e->getMessage() . "\n";
         }
         try {
             var_dump(intdiv(1, 0));
-        } catch (\Error $e) { // TODO: Throwable is caught in original test
+        } catch (\Error $e) { // Note: Throwable is caught in original test, has no meaning outside of PHP 7
             echo "Exception: " . $e->getMessage() . "\n";
         }
         // END TESTS
