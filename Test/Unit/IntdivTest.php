@@ -15,9 +15,9 @@ class IntdivTest extends PHPUnit_Framework_TestCase
         var_dump(intdiv(3, -2));
         var_dump(intdiv(-3, -2));
         var_dump(intdiv(PHP_INT_MAX, PHP_INT_MAX));
-        var_dump(intdiv(~PHP_INT_MAX, ~PHP_INT_MAX)); // TODO: Change to PHP_INT_MIN (awaiting PR)
+        var_dump(intdiv(PHP_INT_MIN, PHP_INT_MIN));
         try {
-            var_dump(intdiv(~PHP_INT_MAX, -1));
+            var_dump(intdiv(PHP_INT_MIN, -1));
         } catch (\Error $e) { // Note: Throwable is caught in original test, has no meaning outside of PHP 7
             echo "Exception: " . $e->getMessage() . "\n";
         }
@@ -79,6 +79,6 @@ class IntdivTest extends PHPUnit_Framework_TestCase
      */
     public function testSmallestNumber()
     {
-        intdiv(~PHP_INT_MAX, -1);
+        intdiv(PHP_INT_MIN, -1);
     }
 }
