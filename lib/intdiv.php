@@ -29,54 +29,40 @@ namespace {
     }
 
     if (!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) {
-        if (!interface_exists('Throwable')) {
-            interface Throwable
-            {
-                public function getMessage();
-                public function getCode();
-                public function getFile();
-                public function getLine();
-                public function getTrace();
-                public function getTraceAsString();
-                public function getPrevious();
-                public function __toString();
-            }
-        }
-
         if (!class_exists('Error')) {
-            class Error extends \Exception implements \Throwable
+            class Error extends \Exception
             {
                 public function __toString()
                 {
                     return $this->getMessage();
                 }
             }
+        } elseif (!Error instanceof \Exception) {
+            throw new \RuntimeException('A class named \'Error\' is already defined that cannot be thrown.');
         }
 
         if (!class_exists('ArithmeticError')) {
-            class ArithmeticError extends \Error
+            class ArithmeticError extends Error
             {
                 public function __toString()
                 {
                     return $this->getMessage();
                 }
             }
+        } elseif (!ArithmeticError instanceof \Exception) {
+            throw new \RuntimeException('A class named \'ArithmeticError\' is already defined that cannot be thrown.');
         }
 
         if (!class_exists('DivisionByZeroError')) {
-            class DivisionByZeroError extends \Error
+            class DivisionByZeroError extends Error
             {
                 public function __toString()
                 {
                     return $this->getMessage();
                 }
             }
-        }
-    }
-
-    foreach (array('Error', 'ArithmeticError', 'DivisionByZeroError') as $class) {
-        if (!$class instanceof \Exception || !$class instanceof \Throwable) {
-            throw new \RuntimeException('A class named \''.$class.'\' is already defined that cannot be thrown.');
+        } elseif (!DivisionByZeroError instanceof \Exception) {
+            throw new \RuntimeException('A class named \'DivisionByZeroError\' is already defined that cannot be thrown.');
         }
     }
 }
