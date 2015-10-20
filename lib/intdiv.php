@@ -32,34 +32,41 @@ namespace {
         }
     }
 
-    if ((!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) 
-        && (!class_exists('Error') || (!in_array('Throwable', class_implements('Error')) && !in_array('Throwable', class_implements('Exception'))))) {
-        class Error extends \Exception
-        {
-            public function __toString()
+    if (!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) {
+        if (!class_exists('Error')) {
+            class Error extends Exception
             {
-                return $this->getMessage();
+                public function __toString()
+                {
+                    return $this->getMessage();
+                }
             }
+        } elseif (!Error instanceof Exception) {
+            throw new \RuntimeException('A class named \'Error\' is already defined that cannot be thrown.');
         }
-    }
 
-    if (!class_exists('ArithmeticError')) {
-        class ArithmeticError extends Error
-        {
-            public function __toString()
+        if (!class_exists('ArithmeticError')) {
+            class ArithmeticError extends Error
             {
-                return $this->getMessage();
+                public function __toString()
+                {
+                    return $this->getMessage();
+                }
             }
+        } elseif (!ArithmeticError instanceof Exception) {
+            throw new \RuntimeException('A class named \'ArithmeticError\' is already defined that cannot be thrown.');
         }
-    }
 
-    if (!class_exists('DivisionByZeroError')) {
-        class DivisionByZeroError extends Error
-        {
-            public function __toString()
+        if (!class_exists('DivisionByZeroError')) {
+            class DivisionByZeroError extends Error
             {
-                return $this->getMessage();
+                public function __toString()
+                {
+                    return $this->getMessage();
+                }
             }
+        } elseif (!DivisionByZeroError instanceof Exception) {
+            throw new \RuntimeException('A class named \'DivisionByZeroError\' is already defined that cannot be thrown.');
         }
     }
 }
