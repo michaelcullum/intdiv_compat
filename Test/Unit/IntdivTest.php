@@ -36,6 +36,6 @@ class IntdivTest extends PHPUnit_Framework_TestCase
      */
     public function testSmallestNumber()
     {
-        intdiv(~PHP_INT_MAX, -1);
+        intdiv(PHP_INT_MIN, -1);
     }
 }
