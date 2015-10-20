@@ -32,14 +32,14 @@ namespace {
         if (!interface_exists('Throwable')) {
             interface Throwable
             {
-                abstract public getMessage();
-                abstract public getCode();
-                abstract public getFile();
-                abstract public getLine();
-                abstract public getTrace();
-                abstract public getTraceAsString();
-                abstract public getPrevious();
-                abstract public __toString();
+                public function getMessage();
+                public function getCode();
+                public function getFile();
+                public function getLine();
+                public function getTrace();
+                public function getTraceAsString();
+                public function getPrevious();
+                public function __toString();
             }
         }
 
