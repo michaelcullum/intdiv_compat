@@ -30,7 +30,7 @@ namespace {
 
     if (!class_exists('ArithmeticError') || !class_exists('DivisionByZeroError')) {
         if (class_exists('Error')) {
-            if (!count(array_intersect(['Exception', 'Throwable'], class_implements('Error')))) {
+            if (!count(array_intersect(array('Exception', 'Throwable'), class_implements('Error')))) {
                 throw new \RuntimeException('A class named \'Error\' is already defined that cannot be thrown.');
             }
         } else {
