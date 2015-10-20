@@ -22,7 +22,7 @@ namespace {
                 throw new DivisionByZeroError('Division by zero');
             }
 
-            if ($divisor === -1 && $dividend === PHP_INT_MIN) {
+            if ($divisor == -1 && $dividend == PHP_INT_MIN) {
                 throw new ArithmeticError('Division of PHP_INT_MIN by -1 is not an integer');
             }
 
